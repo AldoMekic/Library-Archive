@@ -1,0 +1,28 @@
+.user-comment-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 350px; 
+    background-color: white;
+  }
+  
+ .user-comment-box .comment-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    padding: 5px 10px; 
+    border-radius: 8px; 
+  }
+  
+  .user-comment-box .comment-content {
+    margin-bottom: 10px;
+    border: 1px solid black; 
+    border-radius: 8px; 
+    padding: 10px; 
+  }
+  
+  .user-comment-box .comment-rating {
+    font-style: italic;
+    text-align: right; 
+  }

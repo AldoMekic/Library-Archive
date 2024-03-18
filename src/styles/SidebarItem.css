@@ -1,0 +1,19 @@
+.sidebar-item {
+    text-decoration: none;
+    color: #f5deb3;
+    font-size: 18px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    background-color:firebrick ;
+    min-width: 80px;
+    text-align: center;
+  }
+  
+  .sidebar-item:hover {
+    color: #ecf0f1; 
+    transform: scale(1.05);
+  }

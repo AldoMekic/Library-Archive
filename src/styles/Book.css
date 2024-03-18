@@ -1,0 +1,95 @@
+.book-page {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 50px auto 20px;
+  border: 1px solid #ddd; 
+  border-radius: 8px;
+}
+
+.sidebar2 {
+  flex: 0 0 150px; 
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd; 
+}
+
+.current-values,
+.add-to-list,
+.download-section {
+  width: 100%; 
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.orange-block {
+  width: 180px;
+  min-height: 100px;
+  background-color: orange;
+  margin-bottom: 15px;
+  border-radius: 8px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-cover {
+  max-width: 180px; 
+  max-height: 280px; 
+  border-radius: 8px; 
+}
+
+.book-container {
+  padding: 15px;
+  text-align: left;
+  width: calc(100% - 150px);
+  background-color: #f5deb3; 
+  border-left: 2px solid #ccc; 
+}
+
+.comment-section {
+  margin-top: 20px; 
+  padding: 20px;
+  border-top: 2px solid #ccc; 
+}
+
+#commentText {
+  max-width: 600px;
+  max-height: 600px;
+  border-radius: 8px;
+}
+
+.rate-button,
+.review-button {
+  background-color: firebrick;
+  color: #f5deb3;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.review-list-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-list-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}

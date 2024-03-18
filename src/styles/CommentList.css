@@ -1,0 +1,21 @@
+.comment-list {
+    margin-top: 20px;
+    background-color: #f2f2f2; 
+    width: 100%; 
+    border-radius: 8px;
+  }
+  
+  .comment-section-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .comment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-score {
+    font-weight: bold;
+  }

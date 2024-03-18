@@ -1,0 +1,54 @@
+.book-card {
+  border: 6px solid firebrick;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 8px;
+  width: 300px; 
+  display: flex;
+  background-color: #f5deb3;
+}
+
+.left {
+  flex: 1; 
+}
+
+.right {
+  flex: 1; 
+}
+
+.left .book-cover {
+  height: 150px;
+  width: 150px;
+}
+
+h2 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+p {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.button-details {
+  background-color: firebrick;
+  color: #f5deb3;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+  width: 100%; 
+}
+
+.button-details:hover {
+  transition: color 0.5s;
+  background-color: firebrick;
+  color: white;
+}

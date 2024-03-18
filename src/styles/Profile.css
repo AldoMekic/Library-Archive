@@ -1,0 +1,45 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+ 
+}
+
+.upper-div {
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1px solid #ccc; 
+  border-radius: 8px;
+  padding: 10px; 
+}
+
+.nav-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc; 
+  border-radius: 8px;
+  padding: 10px; 
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+}
+
+button.active {
+  color: #fff;
+}
+
+.lower-div {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f5deb3; 
+  width: 100%;
+  height: auto; 
+}

@@ -1,0 +1,11 @@
+.footer {
+    background-color: firebrick;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .footer-text {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+  }

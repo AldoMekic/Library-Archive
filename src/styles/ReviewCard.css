@@ -1,0 +1,21 @@
+.review-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    min-width: 100px;
+    width: 150px;
+    max-width: 350px;
+    background-color: white;
+    justify-content: center;
+  }
+  
+  .name {
+    margin-right: 10px; 
+  }
+  
+  .amount {
+    flex: 0 0 auto; 
+  }
