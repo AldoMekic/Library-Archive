@@ -17,22 +17,37 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.onSignIn = (googleUser) => {
-      var id_token = googleUser.getAuthResponse().id_token;
-      
-      axios.post('http://libraryandarchive.somee.com/api/Users/googleSignIn', { idToken: id_token })
-        .then(response => {
-          const { token } = response.data;
-          sessionStorage.setItem('userToken', token);
-          setUserFunction({ token });
-          navigate('/profile');
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          setErrorMessage('An error occurred with Google Sign In.');
+    const script = document.createElement('script');
+    script.src = "https://apis.google.com/js/platform.js";
+    script.onload = () => {
+      window.gapi.load('auth2', () => {
+        if (!window.gapi.auth2.getAuthInstance()) {
+          window.gapi.auth2.init({
+            client_id: '636906605322-ulliuqoenq2envbtglgo63us40afrbe0.apps.googleusercontent.com'
+          });
+        }
+        window.gapi.signin2.render('my-signin2', {
+          'scope': 'profile email',
+          'width': 240,
+          'height': 50,
+          'longtitle': true,
+          'theme': 'dark',
+          'onsuccess': handleCredentialResponse
         });
+      });
     };
-  }, [setUserFunction, navigate]);
+    document.body.appendChild(script);
+  
+    return () => {
+      // Cleanup the script to avoid memory leaks
+      document.body.removeChild(script);
+    };
+  }, [navigate, setUserFunction]);
+
+  const handleCredentialResponse = (response) => {
+    console.log("Encoded JWT ID token: " + response.credential);
+    // Add your code here to handle the Google sign-in response
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,12 +77,13 @@ const Register = () => {
       setErrorMessage(error.response?.data?.message || "Registration failed. Please try again.");
     }
   };
+
   
   return (
     <div className='register-page'>
     <div className="register-container">
       <h1>Register</h1>
-      <div className="g-signin2" data-onsuccess="window.onSignIn" data-theme="dark" data-longtitle="true" data-clientid="636906605322-ulliuqoenq2envbtglgo63us40afrbe0.apps.googleusercontent.com"></div>
+      <div id="my-signin2" className="g-signin2" data-onsuccess="window.onSignIn" data-theme="dark" data-longtitle="true" data-clientid="636906605322-ulliuqoenq2envbtglgo63us40afrbe0.apps.googleusercontent.com"></div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input
