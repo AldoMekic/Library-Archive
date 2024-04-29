@@ -45,15 +45,15 @@ const NavBar = () => {
     <nav className="navbar">
       <div className="nav-left">
         <ul>
-          <li>
-            <Link to="/">Home</Link>
+        <li className='home-icon'>
+            <Link to="/"><img src={require('../images/background/homeIcon.jpg')} alt="Home" className="nav-home-icon" /></Link>
           </li>
           {!user && (
             <>
-              <li>
+              <li className="login-btn">
                 <Link to="/login">Login</Link>
               </li>
-              <li>
+              <li className="register-btn">
                 <Link to="/register">Register</Link>
               </li>
             </>
@@ -72,11 +72,11 @@ const NavBar = () => {
         <div className="search-bar">
           <SearchBar searchType={searchType} handleSearchTypeChange={handleSearchTypeChange} />
         </div>
-       {/* <div className="sidebar-button">
+        <div className="sidebar-button">
           <button onClick={handleSidebarButtonClick}>Sidebar</button>
-        </div>*/}
+        </div>
       </div>
-      {/* Pass showSidebar state to Sidebar */}
+      
       <Sidebar showSidebar={showSidebar} />
     </nav>
   );

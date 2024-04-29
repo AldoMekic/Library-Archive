@@ -19,6 +19,21 @@
   display: flex;
 }
 
+.navbar .nav-home-icon {
+  height: 48px;  /* Adjust height to match your other buttons */
+  width: auto;  /* Maintain aspect ratio */
+}
+
+.navbar ul li {
+  margin-right: 10px; /* Existing spacing */
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the content */
+}
+
+.navbar ul li:last-child {
+  margin-right: 0; /* No margin on the last item */
+}
 
 .navbar .nav-right {
   display: flex;
@@ -30,27 +45,49 @@
 }
 
 .navbar input {
-  width: 300px; 
+  width: 300px;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-.navbar li,
-.navbar button {
+/* Default styles for all buttons and links */
+.navbar li, .navbar button {
   background-color: firebrick;
   color: #f5deb3;
-  padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
-  color: white;
+  padding: 10px 20px;  /* Default padding for all except home icon */
 }
 
-.navbar li a,
-.navbar button {
+/* Specific override for the Home button to have transparent background */
+
+
+.navbar li.home-icon {
+  background-color: transparent;  /* Transparent background */
+  padding: 0;  /* No padding */
+}
+
+.navbar li.home-icon a {
+  background-color: transparent;  /* Ensuring the link within the li also has no background */
+  padding: 0;  /* No padding */
+  display: flex;  /* To help vertically and horizontally align the image */
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar li a, .navbar button {
   text-decoration: none;
-  color: white
+  color: white;  /* Ensures text color is white for all */
+}
+
+.navbar .login-btn {
+  background-color: #deb887; /* Light brown color */
+}
+
+.navbar .register-btn {
+  background-color: #0376b8; /* Blue color */
 }
