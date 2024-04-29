@@ -53,7 +53,7 @@ const App = () => {
   return (
     <div className='app-container'>
       <div style={{ display: 'flex' }}>
-        <Sidebar showSidebar={showSidebar} />
+        <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
         <div style={{ flex: 1 }}>
           <NavBar toggleSidebar={toggleSidebar} /> {/* Pass toggleSidebar to NavBar */}
           <Routes>

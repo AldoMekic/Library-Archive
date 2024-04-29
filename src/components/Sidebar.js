@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import '../styles/Sidebar.css';
 import SidebarItem from '../components/SidebarItem';
 
-const Sidebar = ({ showSidebar }) => {
+const Sidebar = ({ showSidebar, toggleSidebar }) => {
   const links = [
     { name: 'Home', to: '/', id: 1 },
     { name: 'Login', to: '/login', id: 2 },
@@ -32,16 +32,17 @@ const Sidebar = ({ showSidebar }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (showSidebar && !event.target.closest('.sidebar1')) {
+      // Only handle if sidebar is visible and the click is outside the sidebar container
+      if (showSidebar && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        toggleSidebar();
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showSidebar]);
+  }, [showSidebar, toggleSidebar]);
 
   return (
     <AnimatePresence>
@@ -52,8 +53,9 @@ const Sidebar = ({ showSidebar }) => {
           animate="open"
           exit="closed"
           variants={sideVariants}
+          ref={sidebarRef} // Apply the ref to the motion component
         >
-          <div className="container" ref={sidebarRef}>
+          <div className="container">
             {links.map(({ name, to, id }) => (
               <SidebarItem key={id} name={name} to={to} />
             ))}
