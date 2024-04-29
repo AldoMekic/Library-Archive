@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import UserCommentList from '../components/UserCommentList';
-import axios from 'axios';
 import '../styles/UserComments.css';
 
 const UserComments = ({ userComments }) => {

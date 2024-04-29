@@ -4,8 +4,6 @@ import CommentList from "../components/CommentList"
 import ReviewList from "../components/ReviewList";
 import '../styles/Book.css';
 import { useParams, useNavigate } from 'react-router-dom';
-import bookCover from "../images/covers/game-of-thrones.jpg"
-import pdfFile from "../images/files/game_of_thrones.pdf";
 import { MyContext } from '../context/my-context';
 
 const Book = () => {
@@ -24,23 +22,29 @@ const Book = () => {
   const [errorAdd, setErrorAdd] = useState(null); 
   const reviewListRef = useRef(null);
 
+  const imageSrc = book ? require(`../images/covers/${book.imageURL}`) : null;
+  const pdfSrc = book ? require(`../images/files/${book.fileURL}`) : null;
+
+  const axiosInstance = axios.create({
+    baseURL: 'http://libraryandarchive.somee.com/api/',
+  });
+
   const newComment = async () => {
   try {
-    const commentResponse = await axios.post(`https://localhost:7138/api/Books/bookAddComment/${id}/comments`, {
+    const commentResponse = await axiosInstance.post(`Books/bookAddComment/${id}/comments`, {
       username: user.username,
       bookName: book.name,
       content: commentText,
       rating: rating
     });
     
-    console.log("Comment Response Data:", commentResponse.data); // Log the response data
+    console.log("Comment Response Data:", commentResponse.data); 
     
-    const commentId = commentResponse.data.commentId; // Assuming the response contains the ID of the created comment
+    const commentId = commentResponse.data.commentId; 
     
-    // Call the endpoint to add the comment to the user
-    await axios.post(`https://localhost:7138/api/Users/userAddComment/${user.id}/add-comment/${commentId}`);
+    await axiosInstance.post(`Users/userAddComment/${user.id}/add-comment/${commentId}`);
     
-    const response = await axios.get(`https://localhost:7138/api/Books/getBookById/${id}`);
+    const response = await axiosInstance.get(`Books/getBookById/${id}`);
     const responseData = response.data;
     setComms(responseData.comments);
     setErrorReview(null);
@@ -50,45 +54,51 @@ const Book = () => {
   }
 }
 
-  const handleAddBook = async () => {
-    if (!user) {
-      setErrorAdd("You need to be logged in to use this option."); 
-      return; 
+const handleAddBook = async () => {
+  if (!user?.id) {
+    setErrorAdd("You need to be logged in to use this option.");
+    return;
+  }
+
+  try {
+    const response = await axiosInstance.post(`Users/userAddBook/${user.id}/add-book/${book.id}`);
+    if (response.status === 200) {
+      navigate('/profile');
+    } else {
+      setErrorAdd("Failed to add book to user's list.");
     }
-  
+  } catch (error) {
+    console.error("Error adding book:", error);
+    setErrorAdd("Failed to add book to user's list.");
+  }
+};
+
+useEffect(() => {
+  const getBookById = async () => {
+    if (!id) return; // Ensure ID is present
+
     try {
-      const response = await axios.post(`https://localhost:7138/api/Users/userAddBook/${user.id}/add-book/${book.id}`);
+      const response = await axiosInstance.get(`Books/getBookById/${id}`);
       if (response.status === 200) {
-        navigate('/profile'); 
+        setBook(response.data);
+        setComms(response.data.comments);
+        setRevs(response.data.reviews);
       } else {
-        setErrorAdd("Failed to add book to user's list."); 
+        console.error("Failed to fetch book details with status: ", response.status);
       }
     } catch (error) {
-      console.log("Error", error);
-      setErrorAdd("Failed to add book to user's list."); 
+      console.error("Error fetching book data: ", error);
+      // Implement more nuanced error handling based on the error type
     }
   };
 
-  useEffect(() => {
-    const getBookById = async () => {
-      try {
-        const response = await axios.get(`https://localhost:7138/api/Books/getBookById/${id}`);
-        const responseData = response.data;
-        setBook(responseData);
-        setComms(responseData.comments);
-        setRevs(responseData.reviews)
-      } catch (error) {
-        console.error("Error fetching data", error);
-      }
-    };
-
-    getBookById();
-  }, [id]);
+  getBookById();
+}, [id]); // Depend only on id
 
   const handleCommentSubmit = async () => {
-    if (!user) {
+    if (!user?.id) {
       setErrorReview("You need to be logged in to use this option.");
-      return; 
+      return;
     }
     await newComment();
     setCommentText('');
@@ -124,19 +134,21 @@ const Book = () => {
   }, []);
 
   const handleDownload = () => {
-    if (!user) {
-      setErrorDownload("You need to be logged in to use this option."); 
-      return; 
+    if (!user?.id) {
+      setErrorDownload("You need to be logged in to use this option.");
+      return;
     }
-    window.open(pdfFile);
+    if (pdfSrc) {
+      window.open(pdfSrc);
+    }
   };
 
   return (
     <div className="book-page">
       <div className="sidebar2">
-        <div className="current-values">
+      <div className="current-values">
           <div className="orange-block">
-            <img src={bookCover} alt="Book Cover" className="book-cover" />
+            {imageSrc && <img src={imageSrc} alt="Book Cover" className="book-cover" />}
           </div>
           <button className="review-button" onClick={handleReviewButtonClick}>Review</button>
           {errorReview && <p className="error-message">{errorReview}</p>}

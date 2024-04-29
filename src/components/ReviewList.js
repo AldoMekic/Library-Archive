@@ -8,20 +8,30 @@ const ReviewList = ({ initialReviews, id }) => {
   const [showAddReview, setShowAddReview] = useState(false);
   const [newReviewName, setNewReviewName] = useState('');
 
+  const axiosInstance = axios.create({
+    baseURL: 'http://libraryandarchive.somee.com/api/',
+  });
+
   const newReview = async (name) => {
+    if (!id || typeof id !== 'string' || !name.trim()) {
+      console.error("Invalid book ID or review name");
+      return;
+    }
+  
     try {
-      await axios.post(`https://localhost:7138/api/Books/bookAddReview/${id}/reviews`, {
+      const postResponse = await axiosInstance.post(`Books/bookAddReview/${id}/reviews`, {
         name: name,
         amount: 1,
       });
-
-      const response = await axios.get(`https://localhost:7138/api/Books/getBookById/${id}`);
-      const responseData = response.data;
-      setReviews(responseData.reviews);
+  
+      const response = await axiosInstance.get(`Books/getBookById/${id}`);
+      if (response.data && response.data.reviews) {
+        setReviews(response.data.reviews);
+      }
     } catch (error) {
       console.error("Error adding review:", error);
     }
-  }
+  };
 
   const handleAddReviewClick = () => {
     setShowAddReview(true);

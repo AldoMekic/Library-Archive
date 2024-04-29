@@ -6,14 +6,23 @@ const ReviewCard = ({ name, initialAmount, bookId }) => {
   const [amount, setAmount] = useState(initialAmount);
   const [clicked, setClicked] = useState(false);
 
+  const axiosInstance = axios.create({
+    baseURL: 'http://libraryandarchive.somee.com/api/',
+  });
+
   const handleIncrement = async () => {
+    if (!bookId || !name) {
+      console.error("Book ID or name is missing");
+      return;
+    }
+  
     if (!clicked) {
       try {
-        await axios.post(`https://localhost:7138/api/Books/bookAddReview/${bookId}/reviews`, {
+        await axiosInstance.post(`Books/bookAddReview/${bookId}/reviews`, {
           name: name,
           amount: 1,
         });
-        setAmount(amount + 1);
+        setAmount(prevAmount => prevAmount + 1);
         setClicked(true);
       } catch (error) {
         console.error("Error incrementing review count:", error);

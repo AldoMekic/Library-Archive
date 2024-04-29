@@ -1,33 +1,51 @@
 .book-page {
   display: flex;
   justify-content: space-between;
-  max-width: 800px;
-  margin: 50px auto 20px;
-  border: 1px solid #ddd; 
+  max-width: 100%;
+  margin: 50px auto;
+  border: 1px solid #ddd;
   border-radius: 8px;
+  background-color: #f5deb3; /* Background color for consistency */
+  background-image: url('../images/background/other.jpg');
 }
 
-.sidebar2 {
-  flex: 0 0 150px; 
+.book-page .sidebar2 {
+  flex: 0 0 150px;
   padding: 20px;
-  border-radius: 8px;
+  border-right: 1px solid #ddd; /* Add a right border to separate sidebar */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 1px solid #ddd; 
 }
 
-.current-values,
-.add-to-list,
-.download-section {
-  width: 100%; 
-  border: 1px solid #ccc;
-  border-radius: 8px;
+.book-page .current-values,
+.book-page .add-to-list,
+.book-page .download-section {
+  width: 100%;
   padding: 10px;
   margin-bottom: 15px;
+  border-bottom: 1px solid #ddd; /* Add a bottom border for separation */
 }
 
-.orange-block {
+.book-page .review-button,
+.book-page .add-button,
+.book-page .download-button {
+  background-color: firebrick;
+  color: #f5deb3;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.book-page .review-button:hover,
+.book-page .add-button:hover,
+.book-page .download-button:hover {
+  background-color: darkred; /* Darken button on hover */
+  color: white;
+}
+
+.book-page .orange-block {
   width: 180px;
   min-height: 100px;
   background-color: orange;
@@ -38,34 +56,47 @@
   justify-content: center;
 }
 
-.book-cover {
+.book-page .book-cover {
   max-width: 180px; 
   max-height: 280px; 
   border-radius: 8px; 
 }
 
-.book-container {
+.book-page .book-container {
   padding: 15px;
   text-align: left;
-  width: calc(100% - 150px);
-  background-color: #f5deb3; 
-  border-left: 2px solid #ccc; 
+  flex-grow: 1; /* Allow container to take the remaining width */
 }
 
-.comment-section {
+
+.book-page .comment-section {
   margin-top: 20px; 
   padding: 20px;
   border-top: 2px solid #ccc; 
 }
 
-#commentText {
+.book-page .comment-section button {
+  background-color: firebrick;
+  color: #f5deb3;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.book-page .comment-section button:hover {
+  background-color: darkred; /* Darken button on hover */
+  color: white;
+}
+
+.book-page #commentText {
   max-width: 600px;
   max-height: 600px;
   border-radius: 8px;
 }
 
-.rate-button,
-.review-button {
+.book-page .rate-button,
+.book-page .review-button {
   background-color: firebrick;
   color: #f5deb3;
   padding: 10px;
@@ -75,7 +106,7 @@
   cursor: pointer;
 }
 
-.review-list-overlay {
+.book-page .review-list-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -87,7 +118,7 @@
   align-items: center;
 }
 
-.review-list-container {
+.book-page .review-list-container {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;

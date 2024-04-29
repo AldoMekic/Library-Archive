@@ -6,9 +6,18 @@ import '../styles/BookWish.css';
 const BookWish = ({ book, userId, onRemove }) => { 
   const navigate = useNavigate();
 
+  const axiosInstance = axios.create({
+    baseURL: 'http://libraryandarchive.somee.com/api/',
+  });
+
   const handleRemoveClick = async () => {
+    if (!userId || !book || !book.id) {
+      console.error("Invalid userId or book details");
+      return;
+    }
+    
     try {
-      await axios.delete(`https://localhost:7138/api/users/userRemoveBook/${userId}/remove-book/${book.id}`);
+      await axiosInstance.delete(`Users/userRemoveBook/${userId}/remove-book/${book.id}`);
       onRemove(book.id); 
     } catch (error) {
       console.error("Error removing book:", error);

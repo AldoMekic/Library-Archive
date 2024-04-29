@@ -18,66 +18,58 @@ const App = () => {
   const { setUserFunction } = useContext(MyContext);
   const [showSidebar, setShowSidebar] = useState(false);
   const [books, setBooks] = useState([]);
-  const { user } = useContext(MyContext);
+
+
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = localStorage.getItem("user");
+      const data = sessionStorage.getItem("user"); // Use sessionStorage
       const currentUser = JSON.parse(data);
       if (currentUser) {
         setUserFunction(currentUser);
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${currentUser.token}`;
+        axios.defaults.headers.common["Authorization"] = `Bearer ${currentUser.token}`;
       }
     };
   
     fetchUser();
-  }, []);
+  }, [setUserFunction]);
 
   useEffect(() => {
     const getAllBooks = async () => {
       try {
-        const response = await axios.get("https://localhost:7138/api/Books/searchAllBooks");
-        const responseData =  response.data;
-        setBooks(responseData);
-      } catch(error) {
-        console.log("Error", error);
+        const response = await axios.get("http://libraryandarchive.somee.com/api/Books/searchAllBooks");
+        setBooks(response.data);
+      } catch (error) {
+        console.log("Error fetching books:", error);
       }
     };
     getAllBooks();
   }, []);
-
-  
-
-  const handleBeforeUnload = () => {
-    if (!user) {
-      localStorage.removeItem("user");
-    }
-  };
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
 
   return (
-    <>
-      <div className='app-container'>
-        <NavBar toggleSidebar={toggleSidebar}/>
-        <Routes>
-          <Route path="/" element={<Home books={books} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path='/register' element={<Register/>}/> 
-          <Route path='/profile' element={<Profile/>} /> 
-          <Route path="/book/:id" element={<Book />} /> 
-          <Route path="/error" element={<ErrorPage />} />
-          <Route path="*" element={<ErrorPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-        </Routes>
-        <Footer/>
-        <Sidebar toggle={showSidebar}/>
+    <div className='app-container'>
+      <div style={{ display: 'flex' }}>
+        <Sidebar showSidebar={showSidebar} />
+        <div style={{ flex: 1 }}>
+          <NavBar toggleSidebar={toggleSidebar} />
+          <Routes>
+            <Route path="/" element={<Home books={books} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path='/register' element={<Register/>}/> 
+            <Route path='/profile' element={<Profile/>} /> 
+            <Route path="/book/:id" element={<Book />} /> 
+            <Route path="/error" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage />} />
+            <Route path="/administrator" element={<AdminPage />} />
+          </Routes>
+          <Footer/>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,49 +1,61 @@
+.login-page {
+  background-image: url('../images/background/other.jpg');
+}
+
 .login-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background-color: #f5deb3;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .input-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-  }
-  
-  .input-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 4px;
-    background-color:azure;
-  }
-  
-  button {
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-image: url('../images/background/other.jpg');
+}
+
+.login-container h1 {
+  color: #333;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-container label {
+  margin-bottom: 8px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="email"],
+.login-container input[type="password"] {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: azure;
+}
+
+.login-container button {
+  background-color: firebrick;
+  color: #f5deb3;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 90%;
+  transition: background-color 0.3s;
+}
+
+.login-container button:hover {
+  color: #ecf0f1;
+  background-color: firebrick;
+}
+
+/* If you have any error messages, you might want to style them as well */
+.login-container .error-message {
+  color: red;
+  margin: 10px 0;
+}

@@ -9,10 +9,14 @@ const SearchBar = ({ searchType, handleSearchTypeChange }) => {
   const [searches, setSearches] = useState([]);
   const searchBarRef = useRef(null);
 
+  const axiosInstance = axios.create({
+    baseURL: 'http://libraryandarchive.somee.com/api/',
+  });
+
   useEffect(() => {
     const fetchSearches = async () => {
       try {
-        const response = await axios.get(`https://localhost:7138/api/Books/searchAllBooks`);
+        const response = await axiosInstance.get("Books/searchAllBooks");
         const responseData = response.data;
         const booksData = responseData.map(book => ({
           id: book.id,
@@ -24,11 +28,16 @@ const SearchBar = ({ searchType, handleSearchTypeChange }) => {
         console.error("Error fetching data", error);
       }
     };
-
+  
     fetchSearches();
-
+  
+    const handleOutsideClick = (e) => {
+      if (searchBarRef.current && !searchBarRef.current.contains(e.target)) {
+        setSearchResults([]);
+      }
+    };
+  
     document.addEventListener('click', handleOutsideClick);
-
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
@@ -56,12 +65,6 @@ const SearchBar = ({ searchType, handleSearchTypeChange }) => {
 
   const handleSearchResultSelect = () => {
     setSearchResults([]);
-  };
-
-  const handleOutsideClick = (e) => {
-    if (searchBarRef.current && !searchBarRef.current.contains(e.target)) {
-      setSearchResults([]);
-    }
   };
 
   return (

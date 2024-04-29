@@ -7,27 +7,27 @@
     max-width: 350px;
   }
   
-  .header {
+  .review-list .header {
     text-align: center;
   }
   
-  .reviews {
+  .review-list .reviews {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center; 
   }
   
-  .add-review {
+  .review-list .add-review {
     margin-top: 20px;
     text-align: center;
   }
   
-  .add-review p {
+  .review-list  .add-review p {
     margin-bottom: 10px;
   }
   
-  .add-review button {
+  .review-list .add-review button {
     background-color: #3498db;
     color: #fff;
     padding: 10px 20px;

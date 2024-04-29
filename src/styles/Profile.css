@@ -3,43 +3,43 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
- 
-}
-
-.upper-div {
-  text-align: center;
-  margin-bottom: 20px;
-  border: 1px solid #ccc; 
+  background-color: #f5deb3; /* Match background color with other pages */
+  border: 3px solid firebrick; /* Add a border to match other pages */
   border-radius: 8px;
-  padding: 10px; 
+  max-width: 100%; /* Set a max-width for better alignment */
+  margin: auto; /* Center the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+  background-image: url('../images/background/other.jpg');
 }
 
-.nav-bar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc; 
-  border-radius: 8px;
-  padding: 10px; 
-}
-
-button {
-  padding: 10px;
-  cursor: pointer;
-}
-
-button.active {
-  color: #fff;
-}
-
-.lower-div {
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
+.profile-container .upper-div,
+.profile-container .nav-bar,
+.profile-container .lower-div {
+  background-color: white; /* Background for sections */
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 10px;
-  background-color: #f5deb3; 
-  width: 100%;
-  height: auto; 
+  margin-bottom: 20px; /* Space between sections */
+  padding: 15px;
+  width: 100%; /* Fill container width */
+}
+
+.profile-container .nav-bar button {
+  background-color: firebrick;
+  color: #f5deb3;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px; /* Space between buttons */
+}
+
+.profile-container .nav-bar button.active,
+.profile-container .nav-bar button:hover {
+  background-color: darkred; /* Darker color for active/hover state */
+  color: white;
+}
+
+.profile-container .error-message {
+  color: red; /* Error message color */
+  margin: 10px 0;
 }

@@ -8,34 +8,34 @@
   background-color: #f5deb3;
 }
 
-.left {
+.book-card .left {
   flex: 1; 
 }
 
-.right {
+.book-card .right {
   flex: 1; 
 }
 
-.left .book-cover {
+.book-card .left .book-cover {
   height: 150px;
   width: 150px;
 }
 
-h2 {
+.book-card h2 {
   font-size: 14px;
   margin-bottom: 8px;
 }
 
-p {
+.book-card p {
   font-size: 12px;
   margin-bottom: 8px;
 }
 
-strong {
+.book-card strong {
   font-weight: bold;
 }
 
-.button-details {
+.book-card .button-details {
   background-color: firebrick;
   color: #f5deb3;
   padding: 4px 8px;
@@ -47,7 +47,7 @@ strong {
   width: 100%; 
 }
 
-.button-details:hover {
+.book-card .button-details:hover {
   transition: color 0.5s;
   background-color: firebrick;
   color: white;

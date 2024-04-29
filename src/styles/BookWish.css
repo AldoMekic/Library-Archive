@@ -9,24 +9,24 @@
     width: 70%;
   }
   
-  .book-info {
+  .book-wish .book-info {
     flex-grow: 1;
   }
   
-  .book-name {
+  .book-wish .book-name {
     margin-bottom: 5px;
   }
   
-  .author {
+  .book-wish .author {
     margin: 0;
   }
   
-  .buttons {
+  .book-wish .buttons {
     margin-left: 10px;
   }
   
-  .remove-button,
-  .go-to-button {
+  .book-wish .remove-button,
+  .book-wish .go-to-button {
     background-color: firebrick;
     color: #f5deb3;
     padding: 8px 12px;
@@ -36,8 +36,8 @@
     margin-right: 5px;
   }
   
-  .remove-button:hover,
-  .go-to-button:hover {
+  .book-wish .remove-button:hover,
+  .book-wish .go-to-button:hover {
     background-color: firebrick;
     color: white;
     transition: color 0.3s;

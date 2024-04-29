@@ -5,17 +5,17 @@
     border-radius: 8px;
   }
   
-  .comment-section-title {
+  .comment-list .comment-section-title {
     font-size: 18px;
     margin-bottom: 10px;
   }
 
-  .comment-container {
+  .comment-list .comment-container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   
-  .user-score {
+  .comment-list .user-score {
     font-weight: bold;
   }

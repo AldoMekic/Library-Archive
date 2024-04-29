@@ -5,7 +5,7 @@
   width: 100%; 
 }
 
-.book-wish-list-container {
+.my-books-container .book-wish-list-container {
   width: 90%;
   padding: 20px;
   background-color: #f5deb3;

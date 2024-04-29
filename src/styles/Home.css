@@ -4,9 +4,10 @@
   align-items: center;
   min-height: 100vh;
   padding-bottom: 20px;
+  background-image: url('../images/background/other.jpg');
 }
 
-.info-container {
+.home-container .info-container {
   margin-top: 30px;
   margin-bottom: 30px;
   background-color: white;
@@ -17,31 +18,32 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.info-container a {
+.home-container .info-container a {
   color: firebrick;
   text-decoration: none;
   font-size: 18px;
 }
 
-.info-container a:hover {
+.home-container .info-container a:hover {
   color: #f5deb3; 
   text-decoration: none;
 }
 
-.title {
+.home-container .title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.description {
+.home-container .description {
   font-size: 18px;
   line-height: 1.5;
 }
 
-.category-list-container {
+.home-container .category-list-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  flex-direction: row; /* Align children horizontally */
+  justify-content: center; /* Center children horizontally */
+  gap: 20px; /* Add space between the children */
+  flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
 }

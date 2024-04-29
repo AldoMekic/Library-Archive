@@ -2,7 +2,7 @@
   position: relative;
 }
 
-input {
+.search-bar input {
   width: 300px; 
   padding: 8px;
   border: 1px solid #ddd;
@@ -20,7 +20,7 @@ input {
   cursor: pointer;
 }
 
-.search-results {
+.search-bar .search-results {
   position: absolute;
   top: 100%;
   left: 0;
@@ -30,7 +30,7 @@ input {
   z-index: 1;
 }
 
-.search-results ul {
+.search-bar .search-results ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -38,14 +38,14 @@ input {
   flex-direction: column;
 }
 
-li {
+.search-bar li {
   padding: 8px;
   cursor: pointer;
   border-bottom: 1px solid #ddd; 
   background-color: white;
 }
 
-p {
+.search-bar p {
   padding: 8px;
   margin: 0;
 }

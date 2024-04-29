@@ -3,7 +3,7 @@
     width: 50%;
   }
   
-  .wishlist-header {
+  .book-wish-list .wishlist-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,14 +11,14 @@
     width: 100%;
   }
   
-  .book-wishes {
+  .book-wish-list .book-wishes {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
   }
   
-  .back-to-profile {
+  .book-wish-list .back-to-profile {
     display: flex;
     justify-content: center;
     margin-top: 20px;

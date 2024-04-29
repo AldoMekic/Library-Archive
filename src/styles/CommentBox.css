@@ -7,7 +7,7 @@
     background-color: white;
   }
   
-  .comment-title {
+  .comment-box .comment-title {
     font-size: 18px;
     margin-bottom: 10px;
     background-color: #f0f0f0; 
@@ -15,14 +15,14 @@
     border-radius: 8px; 
   }
   
-  .comment-content {
+  .comment-box .comment-content {
     margin-bottom: 10px;
   border: 1px solid black; 
   border-radius: 8px; 
   padding: 10px; 
   }
   
-  .comment-rating {
+  .comment-box .comment-rating {
     font-style: italic;
     text-align: right;
   }

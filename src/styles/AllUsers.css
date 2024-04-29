@@ -1,0 +1,32 @@
+.all-users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.all-users-table th, .all-users-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.all-users-table th {
+    background-color: #f4f4f4;
+}
+
+.all-users-table .update-btn, .delete-btn {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.all-users-table .update-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.all-users-table .delete-btn {
+    background-color: #f44336; /* Red */
+    color: white;
+}

@@ -15,8 +15,8 @@ const NavBar = () => {
 
   const logoutUserHandler = () => {
     setUserFunction(null);
-    localStorage.removeItem('user');
-    axios.defaults.headers.common['Authorization'] = '';
+    sessionStorage.removeItem('user');
+    delete axios.defaults.headers.common['Authorization'];
     navigate('/');
   };
 
@@ -72,9 +72,9 @@ const NavBar = () => {
         <div className="search-bar">
           <SearchBar searchType={searchType} handleSearchTypeChange={handleSearchTypeChange} />
         </div>
-        <div className="sidebar-button">
+       {/* <div className="sidebar-button">
           <button onClick={handleSidebarButtonClick}>Sidebar</button>
-        </div>
+        </div>*/}
       </div>
       {/* Pass showSidebar state to Sidebar */}
       <Sidebar showSidebar={showSidebar} />

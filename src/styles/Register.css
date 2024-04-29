@@ -1,3 +1,7 @@
+.register-page {
+  background-image: url('../images/background/other.jpg');
+}
+
 .register-container {
   max-width: 400px;
   margin: 50px auto;
@@ -6,33 +10,57 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  background-color: #f5deb3;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    margin-bottom: 8px;
-  }
-  
-  input {
-    padding: 8px;
-    margin-bottom: 16px;
-  }
-  
-  button {
-    background-color: firebrick;
-    color: #f5deb3;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+  background-image: url('../images/background/other.jpg');
+}
 
-  button:hover {
-    color: #ecf0f1;
-    background-color: firebrick;
-  }
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the elements */
+}
+
+.register-container label {
+  margin-bottom: 8px;
+}
+
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+  width: 90%; /* Make inputs take up 90% of form width */
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Style for radio buttons and their labels */
+.register-container .radio-group {
+  display: flex;
+  justify-content: center;
+  width: 90%; /* Make radio group take up 90% of form width */
+  margin-bottom: 16px;
+}
+
+.register-container .radio-group input[type="radio"] {
+  margin: 0 5px; /* Add some spacing around radio buttons */
+}
+
+.register-container .radio-group label {
+  margin: 0 5px; /* Add some spacing around labels */
+  cursor: pointer;
+}
+
+.register-container button {
+  background-color: firebrick;
+  color: #f5deb3;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 90%; /* Make button take up 90% of form width */
+}
+
+.register-container button:hover {
+  color: #ecf0f1;
+  background-color: firebrick;
+}

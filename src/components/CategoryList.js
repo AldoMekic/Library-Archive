@@ -22,23 +22,23 @@ const CategoryList = ({ category, books }) => {
 
   return (
     <div className="category-list">
-      <div className="category-header">
-        <h2 className="category-title">{category}</h2>
-      </div>
-      <div className="category-content">
-        <div className="navigation-buttons">
-          <button className='category-button' onClick={handlePrevClick} disabled={currentIndex === 0}>Previous</button>
-        </div>
-        <div className={`book-cards-container ${direction}`}>
-          {books.slice(currentIndex, currentIndex + 3).map((book, index) => (
-            <BookCard key={index} {...book} />
-          ))}
-        </div>
-        <div className="navigation-buttons">
-          <button className='category-button' onClick={handleNextClick} disabled={currentIndex + 3 >= books.length}>Next</button>
-        </div>
-      </div>
+  <div className="category-header">
+    <h2 className="category-title">{category}</h2>
+  </div>
+  <div className="category-content">
+    <div className="navigation-buttons">
+      <button className='category-button' onClick={handlePrevClick} disabled={currentIndex === 0}>Previous</button>
     </div>
+    <div className={`book-cards-container-${direction}`}> {/* Removed the inline style */}
+      {books.slice(currentIndex, currentIndex + 3).map((book, index) => (
+        <BookCard key={index} {...book} />
+      ))}
+    </div>
+    <div className="navigation-buttons">
+      <button className='category-button' onClick={handleNextClick} disabled={currentIndex + 3 >= books.length}>Next</button>
+    </div>
+  </div>
+</div>
   );
 };
 

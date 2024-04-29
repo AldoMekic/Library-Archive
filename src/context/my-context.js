@@ -10,6 +10,7 @@ export const MyContextProvider = (props) => {
 
   const setUserFunction = (userData) => {
     setUser(userData);
+    sessionStorage.setItem('user', JSON.stringify(userData)); // Saving user data to sessionStorage
   };
 
   return (

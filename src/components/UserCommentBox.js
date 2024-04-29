@@ -6,12 +6,21 @@ import '../styles/UserCommentBox.css';
 const UserCommentBox = ({ comment }) => {
   const navigate = useNavigate(); 
 
+  const axiosInstance = axios.create({
+    baseURL: 'http://libraryandarchive.somee.com/api/',
+  });
+
   const handleBookButtonClick = async () => {
     try {
-      const response = await axios.get(`https://localhost:7138/api/Books/getBookByName/${comment.bookName}`);
+      const encodedBookName = encodeURIComponent(comment.bookName);
+      const response = await axiosInstance.get(`Books/getBookByName/${encodedBookName}`);
       const book = response.data;
-      
-      navigate(`/book/${book.id}`);
+  
+      if (book && book.id) {
+        navigate(`/book/${book.id}`);
+      } else {
+        console.error('Book data is missing or incomplete');
+      }
     } catch (error) {
       console.error('Error fetching book by name:', error);
     }

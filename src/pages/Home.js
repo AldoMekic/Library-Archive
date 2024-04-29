@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import CategoryList from '../components/CategoryList'; 
 import { MyContext } from '../context/my-context';
 import '../styles/Home.css'; 

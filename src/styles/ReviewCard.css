@@ -12,10 +12,10 @@
     justify-content: center;
   }
   
-  .name {
+  .review-card .name {
     margin-right: 10px; 
   }
   
-  .amount {
+  .review-card .amount {
     flex: 0 0 auto; 
   }

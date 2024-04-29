@@ -3,15 +3,17 @@
   justify-content: center; 
   align-items: center;
   height: 100vh; 
-  
 }
 
 .category-list {
-  margin-top: 20px;
-  width: fit-content; 
+  width: 100%; /* Take the full width of its parent container */
   background-color: #f5deb3;
   border: 3px solid firebrick;
   border-radius: 8px;
+  margin-bottom: 20px; /* Add space between the categories if needed */
+  display: flex;
+  flex-direction: column; /* Align children of category-list vertically */
+  background-image: url('../images/background/other2.jpg');
 }
 
 .category-title {
@@ -22,44 +24,29 @@
 .category-content {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* This ensures that the buttons and books are spaced out */
 }
 
 .book-cards-container {
   display: flex;
-  width: 100%;
-  overflow-x: hidden; 
+  flex-grow: 1;
+  justify-content: flex-start; /* Aligns the books to the start */
+  overflow-x: hidden;
+  flex-direction: row;
 }
 
-.book-cards-container.next {
-  animation: slideInRight 0.5s forwards;
-}
-
-.book-cards-container.prev {
-  animation: slideInLeft 0.5s forwards;
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.navigation-buttons {
+.book-cards-container-next {
   display: flex;
-  margin-top: 10px;
-  margin-right: 10px;
+  flex-grow: 1;
+  overflow-x: hidden;
+  flex-direction: row;
+}
+
+.book-cards-container-prev {
+  display: flex;
+  flex-grow: 1;
+  overflow-x: hidden;
+  flex-direction: row;
 }
 
 .category-button {
@@ -69,9 +56,28 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 0 3px; 
 }
 
 .category-button:hover {
+  color: #ecf0f1;
+}
+
+.page-container .navigation-buttons {
+  display: flex;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.page-container  .category-button {
+  background-color: firebrick;
+  color: #f5deb3;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 3px; 
+}
+
+.page-container .category-button:hover {
   color:#ecf0f1;
 }

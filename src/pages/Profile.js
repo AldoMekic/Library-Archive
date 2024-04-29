@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { MyContext } from '../context/my-context';
 import '../styles/Profile.css';
-import My_Books from '../pages/My_Books';
+import MyBooks from './MyBooks';
 import UserComments from '../pages/UserComments';
 import axios from 'axios';
 
@@ -10,24 +10,30 @@ const Profile = () => {
   const [activeButton, setActiveButton] = useState('My Books');
   const [userComments, setUserComments] = useState([]); 
 
+  const axiosInstance = axios.create({
+    baseURL: 'http://libraryandarchive.somee.com/api/',
+  });
+
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
 
   useEffect(() => {
+    // Define fetchUserComments inside useEffect to use the latest state and avoid extra dependencies
     const fetchUserComments = async () => {
+      if (!user || activeButton !== 'Comments') return;
+  
       try {
-        const response = await axios.get(`https://localhost:7138/api/Users/userGetComments/${user.id}/user-comments`);
+        const response = await axios.get(`http://libraryandarchive.somee.com/api/Users/userGetComments/${user.id}/user-comments`);
         setUserComments(response.data);
       } catch (error) {
         console.error('Error fetching user comments:', error);
       }
     };
-
-    if (user && user.id && activeButton === 'Comments') {
-      fetchUserComments();
-    }
-  }, [user, activeButton]);
+  
+    // Call the fetch function
+    fetchUserComments();
+  }, [user?.id, activeButton]);
 
   return (
     <div className="profile-container">
@@ -53,7 +59,7 @@ const Profile = () => {
       </div>
 
       <div className="lower-div">
-        {activeButton === 'My Books' && <My_Books user={user} />}
+        {activeButton === 'My Books' && <MyBooks user={user} />}
         {activeButton === 'Comments' && <UserComments userComments={userComments} />}
       </div>
     </div>

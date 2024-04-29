@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/BookCard.css';
-import bookCover from "../images/covers/game-of-thrones.jpg"
 
-const BookCard = ({ id, name, description, author }) => {
+const BookCard = ({ id, name, description, author, imageURL }) => {
+  const imageSrc = imageURL ? require(`../images/covers/${imageURL}`) : null;
+
   return (
     <div className="book-card">
       <div className="right">
@@ -17,10 +18,10 @@ const BookCard = ({ id, name, description, author }) => {
       </div>
 
       <div className="left">
-          <img src={bookCover} alt="Book Cover" className="book-cover" />
+        {imageSrc && <img src={imageSrc} alt="Book Cover" className="book-cover" />}
       </div>
     </div>
   );
-}
+};
 
 export default BookCard;
