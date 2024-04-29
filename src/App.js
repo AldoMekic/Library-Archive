@@ -15,10 +15,9 @@ import Footer from './components/Footer';
 import AdminPage from './pages/AdminPage';
 
 const App = () => {
-  const { setUserFunction } = useContext(MyContext);
   const [showSidebar, setShowSidebar] = useState(false);
   const [books, setBooks] = useState([]);
-
+  const { user, setUserFunction } = useContext(MyContext);
 
 
   useEffect(() => {
@@ -53,7 +52,7 @@ const App = () => {
   return (
     <div className='app-container'>
       <div style={{ display: 'flex' }}>
-        <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
+      <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} user={user} />
         <div style={{ flex: 1 }}>
           <NavBar toggleSidebar={toggleSidebar} /> {/* Pass toggleSidebar to NavBar */}
           <Routes>

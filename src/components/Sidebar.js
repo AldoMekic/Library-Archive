@@ -3,12 +3,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import '../styles/Sidebar.css';
 import SidebarItem from '../components/SidebarItem';
 
-const Sidebar = ({ showSidebar, toggleSidebar }) => {
-  const links = [
+const Sidebar = ({ showSidebar, toggleSidebar, user }) => {
+  const links = user ? [
+    { name: 'Home', to: '/', id: 1 },
+    { name: 'Profile', to: '/profile', id: 4 }
+  ] : [
     { name: 'Home', to: '/', id: 1 },
     { name: 'Login', to: '/login', id: 2 },
-    { name: 'Register', to: '/register', id: 3 },
-    { name: 'Profile', to: '/profile', id: 4 },
+    { name: 'Register', to: '/register', id: 3 }
   ];
 
   const sideVariants = {
@@ -53,7 +55,7 @@ const Sidebar = ({ showSidebar, toggleSidebar }) => {
           animate="open"
           exit="closed"
           variants={sideVariants}
-          ref={sidebarRef} // Apply the ref to the motion component
+          ref={sidebarRef}
         >
           <div className="container">
             {links.map(({ name, to, id }) => (
