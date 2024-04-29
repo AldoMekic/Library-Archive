@@ -72,7 +72,9 @@ const NavBar = ({toggleSidebar}) => {
           <SearchBar searchType={searchType} handleSearchTypeChange={handleSearchTypeChange} />
         </div>
         <div className="sidebar-button">
-          <button onClick={toggleSidebar}>Sidebar</button>
+          <button onClick={toggleSidebar}>
+            <img src={require('../images/background/sidebarIcon.jpg')} alt="Sidebar" />
+          </button>
         </div>
       </div>
       

@@ -91,3 +91,18 @@
 .navbar .register-btn {
   background-color: #0376b8; /* Blue color */
 }
+
+.navbar .sidebar-button button {
+  background: none;  /* Remove background to focus on the image */
+  border: none;  /* Removing border for a cleaner look */
+  padding: 0;  /* Remove padding to fit the image only */
+  cursor: pointer;  /* Ensure it still looks clickable */
+  display: flex;  /* Center the image inside the button */
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar .sidebar-button button img {
+  height: 24px;  /* Adjust based on your design needs */
+  width: auto;  /* Maintain aspect ratio */
+}
