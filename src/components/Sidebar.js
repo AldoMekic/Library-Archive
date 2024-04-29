@@ -13,16 +13,16 @@ const Sidebar = ({ showSidebar }) => {
 
   const sideVariants = {
     closed: {
-      width: 0,
+      x: '100%', // Start from the right edge
       transition: {
-        delay: 0.7,
+        delay: 0.3,
         duration: 0.3,
       },
     },
     open: {
-      width: 300,
+      x: 0, // Move to show the sidebar
       transition: {
-        delay: 0.7,
+        delay: 0.3,
         duration: 0.3,
       },
     },

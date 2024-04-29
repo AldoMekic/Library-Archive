@@ -4,30 +4,22 @@
   align-items: center;
   background-color: #f5deb3;
   height: 100vh;
-  width: 300px;
+  width: 300px; /* Ensure the width matches the sidebar width */
   padding: 20px;
 }
 
-.container .sidebar1 {
+.sidebar1 {
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0; /* Position on the right */
   height: 100vh;
   background-color: #f5deb3;
   z-index: 1000;
-  width: 300px;
-  transition: transform 0.3s ease-in-out;
+  width: 300px; /* This should be consistent with the width in '.container' */
+  box-shadow: -2px 0 8px rgba(0,0,0,0.1); /* Shadow on the left side */
 }
 
-.container.open {
-  width: 300px; /* Adjust based on the desired width of the open sidebar */
-}
-
-.container .sidebar-links {
-  margin-top: 20px;
-}
-
-.container .sidebar-links a {
+.sidebar-links a {
   text-decoration: none;
   color: #333;
   font-size: 18px;
@@ -36,22 +28,20 @@
   transition: color 0.3s, transform 0.3s;
 }
 
-.container .sidebar-links a:hover {
+.sidebar-links a:hover {
   color: #007bff;
   transform: scale(1.05);
 }
 
-.container .btn-container {
-  margin-top: 20px;
-}
-
-.container .btn-container button {
+.btn-container button {
   background-color: firebrick;
   color: #f5deb3;
-  border: 1px solid gray;
+  border: none;
   border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
-.container .btn-container button:hover {
-  color: #f5deb3;
+.btn-container button:hover {
+  background-color: #c24e4e; /* Slightly lighter red on hover */
 }

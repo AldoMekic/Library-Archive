@@ -47,7 +47,7 @@ const App = () => {
   }, []);
 
   const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
+    setShowSidebar(prev => !prev);
   };
 
   return (
@@ -55,18 +55,18 @@ const App = () => {
       <div style={{ display: 'flex' }}>
         <Sidebar showSidebar={showSidebar} />
         <div style={{ flex: 1 }}>
-          <NavBar toggleSidebar={toggleSidebar} />
+          <NavBar toggleSidebar={toggleSidebar} /> {/* Pass toggleSidebar to NavBar */}
           <Routes>
             <Route path="/" element={<Home books={books} />} />
             <Route path="/login" element={<Login />} />
-            <Route path='/register' element={<Register/>}/> 
-            <Route path='/profile' element={<Profile/>} /> 
-            <Route path="/book/:id" element={<Book />} /> 
+            <Route path='/register' element={<Register />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path="/book/:id" element={<Book />} />
             <Route path="/error" element={<ErrorPage />} />
             <Route path="*" element={<ErrorPage />} />
             <Route path="/administrator" element={<AdminPage />} />
           </Routes>
-          <Footer/>
+          <Footer />
         </div>
       </div>
     </div>

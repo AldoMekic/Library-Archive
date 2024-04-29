@@ -3,10 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MyContext } from '../context/my-context';
 import axios from 'axios';
 import SearchBar from './SearchBar';
-import Sidebar from './Sidebar';
 import '../styles/NavBar.css';
 
-const NavBar = () => {
+const NavBar = ({toggleSidebar}) => {
   const { user, setUserFunction } = useContext(MyContext);
   const [searchType, setSearchType] = useState('name');
   const [showSidebar, setShowSidebar] = useState(false); 
@@ -73,11 +72,10 @@ const NavBar = () => {
           <SearchBar searchType={searchType} handleSearchTypeChange={handleSearchTypeChange} />
         </div>
         <div className="sidebar-button">
-          <button onClick={handleSidebarButtonClick}>Sidebar</button>
+          <button onClick={toggleSidebar}>Sidebar</button>
         </div>
       </div>
       
-      <Sidebar showSidebar={showSidebar} />
     </nav>
   );
 };
