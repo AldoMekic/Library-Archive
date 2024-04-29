@@ -1,11 +1,37 @@
 .footer {
-    background-color: firebrick;
-    padding: 20px 0;
-    text-align: center;
-  }
-  
-  .footer  .footer-text {
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-  }
+  background-color: firebrick;
+  padding: 0px;
+  text-align: center;
+}
+
+.footer .footer-text {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.footer .footer-links {
+  margin-bottom: 10px; /* Adds space between the links and the footer text */
+  background-color: #deb887;
+  height: 150px;
+  display: flex;
+  justify-content: center; /* Centers children horizontally */
+  align-items: center; /* Centers children vertically */
+  flex-wrap: wrap; /* Allows multiple items to wrap in the container */
+}
+
+.footer .footer-links a {
+  color: white;
+  margin: 0 10px; /* Provides margin to the left and right for spacing */
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.footer .footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer .footer-text-container {
+  padding: 10px 0; /* Provides padding around the text for better spacing */
+}
