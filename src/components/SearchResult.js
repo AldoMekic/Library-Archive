@@ -1,19 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 const SearchResult = ({ searchResults, searchType, onSelect }) => {
-  if (searchResults.length === 0) {
-    return null; 
-  }
+  const navigate = useNavigate();
+
+  const handleResultClick = (item) => {
+    onSelect(item); // Pass item back to onSelect to determine navigation path
+  };
 
   return (
     <div className="search-results">
       <ul>
-        {searchResults.map((book) => (
-          <li key={book.id} onClick={onSelect}>
-            <Link to={`/book/${book.id}`}> 
-              {searchType === 'name' ? book.name : book.genre}
-            </Link>
+        {searchResults.map((item) => (
+          <li key={item.id} onClick={() => handleResultClick(item)}>
+            {item.name}
           </li>
         ))}
       </ul>
