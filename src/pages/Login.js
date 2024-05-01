@@ -1,8 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../context/my-context';
 import '../styles/Login.css';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
   const { setUserFunction } = useContext(MyContext);
@@ -13,46 +14,6 @@ const Login = () => {
   });
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Function to load the Google API script
-    const loadGoogleApi = () => {
-      const script = document.createElement('script');
-      script.src = "https://apis.google.com/js/platform.js";
-      script.onload = () => initGoogleSignIn(); // Initialize Google Sign-In after the script loads
-      document.body.appendChild(script);
-    };
-
-    const initGoogleSignIn = () => {
-      window.gapi.load('auth2', () => {
-        if (!window.gapi.auth2.getAuthInstance()) {
-          window.gapi.auth2.init({
-            client_id: '636906605322-ulliuqoenq2envbtglgo63us40afrbe0.apps.googleusercontent.com'
-          });
-        }
-        window.gapi.signin2.render('my-signin2', {
-          'scope': 'profile email',
-          'width': 240,
-          'height': 50,
-          'longtitle': true,
-          'theme': 'dark',
-          'onsuccess': handleCredentialResponse
-        });
-      });
-    };
-
-    // Check if gapi is already loaded
-    if (!window.gapi) {
-      loadGoogleApi();
-    } else {
-      initGoogleSignIn();
-    }
-  }, [navigate, setUserFunction]);
-
-  const handleCredentialResponse = (response) => {
-    console.log("Encoded JWT ID token: " + response.credential);
-    // Add your code here to handle the Google sign-in response
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -83,11 +44,38 @@ const Login = () => {
     }
   };
 
+  const handleCredentialResponse = async (response) => {
+    try {
+      // Extract the ID token from the Google credential response
+      const { credential } = response;
+  
+      // Post the ID token to your backend for verification and user handling
+      const serverResponse = await axios.post('http://libraryandarchive.somee.com/api/Users/googleSignIn', {
+        IdToken: credential  // Make sure the property name matches the expected DTO field
+      });
+  
+      if (serverResponse.status === 200) {
+        const { user, token } = serverResponse.data;
+        setUserFunction(user);  // Set the user in your context/state
+        sessionStorage.setItem('user', JSON.stringify(user));  // Save user data in sessionStorage
+        navigate('/profile');  // Navigate to the profile page
+      } else {
+        throw new Error('Failed to authenticate with Google.');
+      }
+    } catch (error) {
+      console.error('Error processing Google sign-in:', error);
+      setErrorMessage(error.response?.data?.Message || 'Failed to login with Google');
+    }
+  };
+
   return (
     <div className='login-page'>
       <div className="login-container">
         <h1>Login</h1>
-        <div id="my-signin2"></div>
+        <GoogleLogin
+          onSuccess={handleCredentialResponse}
+          onError={() => setErrorMessage('Google Sign In was unsuccessful.')}
+        />
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">Username:</label>
           <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} required />

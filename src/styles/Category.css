@@ -1,0 +1,13 @@
+.category-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5deb3; /* Match background color with other pages */
+    border: 3px solid firebrick; /* Add a border to match other pages */
+    border-radius: 8px;
+    max-width: 100%; /* Set a max-width for better alignment */
+    margin: auto; /* Center the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+    background-image: url('../images/background/other.jpg');
+  }

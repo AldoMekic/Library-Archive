@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { MyContextProvider } from './context/my-context';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
+    <GoogleOAuthProvider clientId='767338808064-gcs6lhg1aqhot7g6bq08hbmu6hmr66pl.apps.googleusercontent.com'>
     <MyContextProvider>
     <App />
     </MyContextProvider>
+    </GoogleOAuthProvider>
     </BrowserRouter>
 );
 
