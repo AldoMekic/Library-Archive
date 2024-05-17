@@ -1,3 +1,8 @@
+.book-card-link {
+  text-decoration: none; /* Remove underline from link */
+  color: inherit; /* Inherit text color to maintain styles */
+}
+
 .book-card {
   border: 6px solid firebrick;
   border-radius: 4px;
@@ -6,6 +11,7 @@
   width: 300px; 
   display: flex;
   background-color: #f5deb3;
+  cursor: pointer;
 }
 
 .book-card .left {

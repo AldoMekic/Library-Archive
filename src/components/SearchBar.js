@@ -86,7 +86,7 @@ const SearchBar = ({ searchType, handleSearchTypeChange }) => {
         onChange={handleInputChange}
       />
       <select value={searchType} onChange={handleSearchTypeChange}>
-        <option value="name">Name</option>
+        <option value="name">Title</option>
         <option value="genre">Genre</option>
       </select>
       {searchTerm && (

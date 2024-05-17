@@ -27,26 +27,15 @@
   justify-content: space-between; /* This ensures that the buttons and books are spaced out */
 }
 
-.book-cards-container {
-  display: flex;
-  flex-grow: 1;
-  justify-content: flex-start; /* Aligns the books to the start */
-  overflow-x: hidden;
-  flex-direction: row;
-}
-
-.book-cards-container-next {
-  display: flex;
-  flex-grow: 1;
-  overflow-x: hidden;
-  flex-direction: row;
-}
-
+.book-cards-container,
+.book-cards-container-next,
 .book-cards-container-prev {
   display: flex;
   flex-grow: 1;
+  justify-content: center; /* Center the book cards */
   overflow-x: hidden;
   flex-direction: row;
+  gap: 10px; /* Add some space between the book cards */
 }
 
 .category-button {
@@ -68,7 +57,7 @@
   margin-right: 10px;
 }
 
-.page-container  .category-button {
+.page-container .category-button {
   background-color: firebrick;
   color: #f5deb3;
   padding: 6px 12px;
@@ -79,5 +68,5 @@
 }
 
 .page-container .category-button:hover {
-  color:#ecf0f1;
+  color: #ecf0f1;
 }
