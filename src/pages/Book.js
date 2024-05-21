@@ -3,7 +3,7 @@ import axios from 'axios';
 import CommentList from "../components/CommentList";
 import ReviewList from "../components/ReviewList";
 import '../styles/Book.css';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { MyContext } from '../context/my-context';
 import ReactStars from "react-rating-stars-component";
 
@@ -21,6 +21,7 @@ const Book = () => {
   const [errorReview, setErrorReview] = useState(null); 
   const [errorDownload, setErrorDownload] = useState(null); 
   const [errorAdd, setErrorAdd] = useState(null); 
+  const [authorId, setAuthorId] = useState(null);
   const reviewListRef = useRef(null);
 
   const imageSrc = book ? require(`../images/covers/${book.imageURL}`) : null;
@@ -29,6 +30,16 @@ const Book = () => {
   const axiosInstance = axios.create({
     baseURL: 'http://libraryandarchive.somee.com/api/',
   });
+
+  const fetchAuthorByFullName = async (fullName) => {
+    try {
+      const response = await axiosInstance.get(`Authors/getAuthorByFullName/${fullName}`);
+      setAuthorId(response.data.id);
+    } catch (error) {
+      console.error(`Failed to fetch author ${fullName}:`, error);
+      setAuthorId(null);
+    }
+  };
 
   const newComment = async () => {
     try {
@@ -39,10 +50,7 @@ const Book = () => {
         rating: rating
       });
       
-      console.log("Comment Response Data:", commentResponse.data); 
-      
       const commentId = commentResponse.data.commentId; 
-      
       await axiosInstance.post(`Users/userAddComment/${user.id}/add-comment/${commentId}`);
       
       const response = await axiosInstance.get(`Books/getBookById/${id}`);
@@ -50,7 +58,6 @@ const Book = () => {
       setComms(responseData.comments);
       setErrorReview(null);
     } catch (error) {
-      console.log("Error", error);
       setErrorReview("You need to be logged in to use this option."); 
     }
   }
@@ -69,7 +76,6 @@ const Book = () => {
         setErrorAdd("Failed to add book to user's list.");
       }
     } catch (error) {
-      console.error("Error adding book:", error);
       setErrorAdd("Failed to add book to user's list.");
     }
   };
@@ -81,15 +87,16 @@ const Book = () => {
       try {
         const response = await axiosInstance.get(`Books/getBookById/${id}`);
         if (response.status === 200) {
-          setBook(response.data);
-          setComms(response.data.comments);
-          setRevs(response.data.reviews);
+          const bookData = response.data;
+          setBook(bookData);
+          await fetchAuthorByFullName(bookData.author);
+          setComms(bookData.comments);
+          setRevs(bookData.reviews);
         } else {
           console.error("Failed to fetch book details with status: ", response.status);
         }
       } catch (error) {
         console.error("Error fetching book data: ", error);
-        // Implement more nuanced error handling based on the error type
       }
     };
 
@@ -168,7 +175,13 @@ const Book = () => {
           <>
             <div className="book-header">
               <h1 className="title">{book.name}</h1>
-              <h2 className="author">by {book.author}</h2>
+              <h2 className="author">
+                {authorId ? (
+                  <Link to={`/author/${authorId}`} className="author-link">{book.author}</Link>
+                ) : (
+                  <span>{book.author}</span>
+                )}
+              </h2>
             </div>
 
             <p className="description">{book.description}</p>

@@ -68,7 +68,6 @@
   flex-grow: 1; /* Allow container to take the remaining width */
 }
 
-
 .book-page .comment-section {
   margin-top: 20px; 
   padding: 20px;
@@ -123,4 +122,14 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
+}
+
+.author-link {
+  color: firebrick;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.author-link:hover {
+  color: burlywood; /* Change link color on hover */
 }

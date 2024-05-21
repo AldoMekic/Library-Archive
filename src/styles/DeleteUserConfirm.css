@@ -1,0 +1,37 @@
+.delete-user-confirm {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .delete-user-confirm h2 {
+    margin-bottom: 10px;
+  }
+  
+  .delete-user-confirm p {
+    margin-bottom: 20px;
+  }
+  
+  .delete-user-confirm button {
+    padding: 10px;
+    margin: 5px;
+    background-color: firebrick;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-user-confirm button:hover {
+    background-color: darkred;
+  }
+  
+  .delete-user-confirm .cancel-button {
+    background-color: gray;
+  }
+  
+  .delete-user-confirm .cancel-button:hover {
+    background-color: darkgray;
+  }

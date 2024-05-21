@@ -1,0 +1,48 @@
+.user-settings {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-settings h2 {
+    margin-bottom: 20px;
+  }
+  
+  .password-change {
+    margin-top: 20px;
+  }
+  
+  .password-change form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .password-change label {
+    margin-bottom: 10px;
+  }
+  
+  .password-change input {
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .password-change button {
+    padding: 10px;
+    background-color: firebrick;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .password-change button:hover {
+    background-color: darkred;
+  }
+  
+  .password-change p {
+    margin-top: 10px;
+    color: firebrick;
+  }

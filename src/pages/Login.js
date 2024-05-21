@@ -8,8 +8,7 @@ import { GoogleLogin } from '@react-oauth/google';
 const Login = () => {
   const { setUserFunction } = useContext(MyContext);
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
+    identifier: '', // This will be used for both username and email
     password: '',
   });
   const [errorMessage, setErrorMessage] = useState('');
@@ -25,8 +24,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.username.trim().length === 0 || formData.email.trim().length === 0 || formData.password.trim().length === 0) {
-      setErrorMessage('Please enter a valid username, email, and password!');
+    if (formData.identifier.trim().length === 0 || formData.password.trim().length === 0) {
+      setErrorMessage('Please enter a valid identifier (username or email) and password!');
       return;
     }
 
@@ -40,25 +39,23 @@ const Login = () => {
       navigate('/profile');
     } catch (error) {
       console.error('Error:', error);
-      setErrorMessage('Invalid username, email, or password');
+      setErrorMessage('Invalid identifier (username or email) or password');
     }
   };
 
   const handleCredentialResponse = async (response) => {
     try {
-      // Extract the ID token from the Google credential response
       const { credential } = response;
-  
-      // Post the ID token to your backend for verification and user handling
+
       const serverResponse = await axios.post('http://libraryandarchive.somee.com/api/Users/googleSignIn', {
-        IdToken: credential  // Make sure the property name matches the expected DTO field
+        IdToken: credential
       });
-  
+
       if (serverResponse.status === 200) {
         const { user, token } = serverResponse.data;
-        setUserFunction(user);  // Set the user in your context/state
-        sessionStorage.setItem('user', JSON.stringify(user));  // Save user data in sessionStorage
-        navigate('/profile');  // Navigate to the profile page
+        setUserFunction(user);
+        sessionStorage.setItem('user', JSON.stringify(user));
+        navigate('/profile');
       } else {
         throw new Error('Failed to authenticate with Google.');
       }
@@ -77,10 +74,8 @@ const Login = () => {
           onError={() => setErrorMessage('Google Sign In was unsuccessful.')}
         />
         <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Username:</label>
-          <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} required />
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+          <label htmlFor="identifier">Username or Email:</label>
+          <input type="text" id="identifier" name="identifier" value={formData.identifier} onChange={handleChange} required />
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
           <button type="submit">Login</button>

@@ -14,6 +14,7 @@ import ErrorPage from './pages/ErrorPage';
 import Footer from './components/Footer';
 import AdminPage from './pages/AdminPage';
 import Category from './pages/Category';
+import Author from './pages/Author';
 
 const App = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -63,6 +64,7 @@ const App = () => {
             <Route path='/profile' element={<Profile />} />
             <Route path="/book/:id" element={<Book />} />
             <Route path='/category/:categoryName' element={<Category/>} />
+            <Route path="/author/:authorId" element={<Author />} />
             <Route path="/error" element={<ErrorPage />} />
             <Route path="*" element={<ErrorPage />} />
             <Route path="/administrator" element={<AdminPage />} />

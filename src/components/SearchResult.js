@@ -1,11 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const SearchResult = ({ searchResults, searchType, onSelect }) => {
-  const navigate = useNavigate();
-
   const handleResultClick = (item) => {
-    onSelect(item); // Pass item back to onSelect to determine navigation path
+    onSelect(item);
   };
 
   return (

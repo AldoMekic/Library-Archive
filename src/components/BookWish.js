@@ -1,27 +1,17 @@
 import React from 'react';
-import axios from 'axios'; 
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import '../styles/BookWish.css';
 
-const BookWish = ({ book, userId, onRemove }) => { 
+const BookWish = ({ book, userId, onRemove }) => {
   const navigate = useNavigate();
 
-  const axiosInstance = axios.create({
-    baseURL: 'http://libraryandarchive.somee.com/api/',
-  });
-
-  const handleRemoveClick = async () => {
+  const handleRemoveClick = () => {
     if (!userId || !book || !book.id) {
       console.error("Invalid userId or book details");
       return;
     }
-    
-    try {
-      await axiosInstance.delete(`Users/userRemoveBook/${userId}/remove-book/${book.id}`);
-      onRemove(book.id); 
-    } catch (error) {
-      console.error("Error removing book:", error);
-    }
+
+    onRemove(book.id); // Trigger the remove action passed down from the parent
   };
 
   const handleGoToClick = () => {

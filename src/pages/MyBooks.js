@@ -26,7 +26,8 @@ const MyBooks = ({ user }) => {
     try {
       const response = await axios.delete(`http://libraryandarchive.somee.com/api/Users/userRemoveBook/${user.id}/remove-book/${bookId}`);
       if (response.status === 200) {
-        setBooks(books.filter(book => book.id !== bookId));
+        // Update the books state directly without refetching
+        setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId));
       }
     } catch (error) {
       console.error("Error removing book:", error);
